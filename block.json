@@ -1,0 +1,14 @@
+{
+    "apiVersion": 2,
+    "name": "my-custom/block",
+    "title": "My Custom Block",
+    "category": "widgets",
+    "icon": "smiley",
+    "description": "A custom block for displaying a list of posts.",
+    "supports": {
+        "html": true
+    },
+    "editorScript": "my-custom-block-editor-script",
+    "editorStyle": "my-custom-block-editor-style",
+    "style": "my-custom-block-frontend-style"
+}
