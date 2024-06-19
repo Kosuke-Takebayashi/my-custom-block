@@ -9,7 +9,7 @@ Author: Your Name
 function my_custom_block_render_callback($block_attributes, $content)
 {
     $recent_posts = wp_get_recent_posts(array(
-        'numberposts' => 5,
+        'numberposts' => $block_attributes['postsToShow'],
         'post_status' => 'publish',
     ));
 
@@ -85,6 +85,10 @@ function my_custom_block_register_block()
             'date' => array(
                 'type' => 'boolean',
                 'default' => true,
+            ),
+            'postsToShow' => array(
+                'type' => "number",
+                'default' => 4,
             ),
         ),
     ));

@@ -28,6 +28,10 @@ registerBlockType("my-custom/block", {
             type: "boolean",
             default: true,
         },
+        postsToShow: {
+            type: "number",
+            default: 4, // デフォルトの表示件数を設定
+        },
     },
     edit: MyCustomBlockEdit,
     save() {
