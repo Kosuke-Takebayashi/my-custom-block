@@ -16,9 +16,8 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
     }, [localPostsToShow, setAttributes]);
 
     useEffect(() => {
-        // 属性の更新を反映
         setAttributes({ selectedOption: localSelectedOption });
-    }, [localSelectedOption, setAttributes]);
+    }, [localSelectedOption]);
 
     const recentPosts = useSelect(
         (select) => {
@@ -43,6 +42,8 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
 
     // 日付フォーマットの関数
     const formatDate = (date, format) => {
+        console.log("Format:", format);
+        console.log("Local Selected Option:", localSelectedOption);
         const options = {
             year: "numeric",
             month: "2-digit",

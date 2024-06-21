@@ -8,6 +8,8 @@ Author: Your Name
 
 function my_custom_block_render_callback($block_attributes, $content)
 {
+    $format = isset($block_attributes['selectedOption']) ? $block_attributes['selectedOption'] : '値が選択されていません';
+
     $recent_posts = wp_get_recent_posts(array(
         'numberposts' => $block_attributes['postsToShow'],
         'post_status' => 'publish',
@@ -104,6 +106,10 @@ function my_custom_block_register_block()
             'postsToShow' => array(
                 'type' => "number",
                 'default' => 4,
+            ),
+            'selectedOption' => array(
+                'type' =>  "string",
+                'default' =>  "Y-m-d", // デフォルトの表示件数を設定
             ),
         ),
     ));
