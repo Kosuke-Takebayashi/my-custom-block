@@ -32,6 +32,10 @@ registerBlockType("my-custom/block", {
             type: "number",
             default: 4, // デフォルトの表示件数を設定
         },
+        selectedOption: {
+            type: "string",
+            default: "Y-m-d", // デフォルトの表示件数を設定
+        },
     },
     edit: MyCustomBlockEdit,
     save() {

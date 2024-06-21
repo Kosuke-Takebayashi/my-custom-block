@@ -17,6 +17,21 @@ function my_custom_block_render_callback($block_attributes, $content)
         return 'No posts';
     }
 
+    // switch (format) {
+    //         case "Y-m-d":
+    //             return `${parts[0].value}-${parts[2].value}-${parts[4].value}`;
+    //         case "YYYY.mm.dd":
+    //             return `${parts[0].value}.${parts[2].value}.${parts[4].value}`;
+    //         case "YYYY年mm月dd日":
+    //             return `${parts[0].value}年${parts[2].value}月${parts[4].value}日`;
+    //         case "YYYY/mm/dd":
+    //             return `${parts[0].value}/${parts[2].value}/${parts[4].value}`;
+    //         default:
+    //             return `${parts[0].value}-${parts[2].value}-${parts[4].value}`;
+    //     }
+
+    $format = $block_attributes['selectedOption'];
+
     $output = '<ul class="' . esc_attr($block_attributes['className']) . '" style="font-size: var(--font-size-' . intval($block_attributes['fontSize']) . ')">';
     foreach ($recent_posts as $post) {
         $post_categories = get_the_category($post['ID']);
@@ -25,7 +40,7 @@ function my_custom_block_render_callback($block_attributes, $content)
 
         // 投稿日の表示を制御
         if (!empty($block_attributes['date']) && $block_attributes['date']) {
-            $output .= '<time class="my-custom-block-post-date" datetime="' . esc_attr(get_the_date('Y-m-d', $post['ID'])) . '">' . esc_html(get_the_date('Y-m-d', $post['ID'])) . '</time>';
+            $output .= '<time class="my-custom-block-post-date" datetime="' . esc_attr(get_the_date($format, $post['ID'])) . '">' . esc_html(get_the_date($format, $post['ID'])) . '</time>';
         }
 
         // カテゴリーの表示
