@@ -36,6 +36,10 @@ registerBlockType("my-custom/block", {
             type: "string",
             default: "Y-m-d", // デフォルトの表示件数を設定
         },
+        layoutStyle: {
+            type: "string",
+            default: "ワンカラム",
+        },
     },
     edit: MyCustomBlockEdit,
     save() {
