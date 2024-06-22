@@ -91,7 +91,7 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
                 </PanelBody>
             </InspectorControls>
 
-            <ul>
+            <ul className="wp-block-my-custom-block">
                 {recentPosts &&
                     recentPosts.map((post) => (
                         <li key={post.id}>

@@ -20,6 +20,10 @@ registerBlockType("my-custom/block", {
         },
     },
     attributes: {
+        fontSize: {
+            type: "number",
+            default: 16,
+        },
         date: {
             type: "boolean",
             default: true,

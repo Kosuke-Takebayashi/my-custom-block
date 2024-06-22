@@ -34,7 +34,7 @@ function my_custom_block_render_callback($block_attributes, $content)
 
     $format = $block_attributes['selectedOption'];
 
-    $output = '<ul class="' . esc_attr($block_attributes['className']) . '>';
+    $output = '<ul class="' . esc_attr($block_attributes['className']) . '">';
     foreach ($recent_posts as $post) {
         $post_categories = get_the_category($post['ID']);
 
@@ -95,6 +95,10 @@ function my_custom_block_register_block()
         'style'         => 'my-custom-block-frontend-style',
         'render_callback' => 'my_custom_block_render_callback',
         'attributes' => array(
+            'className' => array(
+                'type' => 'string',
+                'default' => 'wp-block-my-custom-block',
+            ),
             'fontSize' => array(
                 'type' => 'number',
                 'default' => 16,
