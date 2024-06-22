@@ -38,7 +38,7 @@ registerBlockType("my-custom/block", {
         },
         layoutStyle: {
             type: "string",
-            default: "ワンカラム",
+            default: "one-column",
         },
     },
     edit: MyCustomBlockEdit,

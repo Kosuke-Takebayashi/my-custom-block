@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
     const [localPostsToShow, setLocalPostsToShow] = useState(attributes.postsToShow);
     const [localSelectedOption, setLocalSelectedOption] = useState(attributes.selectedOption);
+    const [localLayoutStyle, setLocalLayoutStyle] = useState(attributes.layoutStyle);
 
     const blockProps = useBlockProps({ style: { fontSize: attributes.fontSize } });
 
@@ -18,6 +19,10 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
     useEffect(() => {
         setAttributes({ selectedOption: localSelectedOption });
     }, [localSelectedOption]);
+
+    useEffect(() => {
+        setAttributes({ layoutStyle: localLayoutStyle });
+    }, [localLayoutStyle]);
 
     const recentPosts = useSelect(
         (select) => {
@@ -42,8 +47,6 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
 
     // 日付フォーマットの関数
     const formatDate = (date, format) => {
-        console.log("Format:", format);
-        console.log("Local Selected Option:", localSelectedOption);
         const options = {
             year: "numeric",
             month: "2-digit",
@@ -74,6 +77,12 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
         { value: "Y/m/d", label: "Y/m/d" },
     ];
 
+    const layoutStyles = [
+        { value: "one-column", label: "1カラム" },
+        { value: "two-column", label: "2カラム" },
+        { value: "three-column", label: "3カラム" },
+    ];
+
     return (
         <div {...blockProps}>
             <InspectorControls>
@@ -88,10 +97,11 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
                         max={10} // 任意の最大値を設定
                     />
                     <SelectControl label={__("日付表示フォーマット")} value={localSelectedOption} options={selectOptions} onChange={(selectedOption) => setLocalSelectedOption(selectedOption)} />
+                    <SelectControl label={__("レイアウトスタイル")} value={localLayoutStyle} options={layoutStyles} onChange={(layoutStyle) => setLocalLayoutStyle(layoutStyle)} />
                 </PanelBody>
             </InspectorControls>
 
-            <ul className="wp-block-my-custom-block">
+            <ul className={`wp-block-my-custom-block ${localLayoutStyle}`}>
                 {recentPosts &&
                     recentPosts.map((post) => (
                         <li key={post.id}>

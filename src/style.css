@@ -30,6 +30,8 @@ li {
     display: inline-block;
 }
 
+
+
 @media screen and (max-width: 767px) {
     .wp-block-my-custom-block li>a {
         display: block;
