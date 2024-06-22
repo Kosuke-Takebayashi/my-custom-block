@@ -34,7 +34,7 @@ function my_custom_block_render_callback($block_attributes, $content)
 
     $format = $block_attributes['selectedOption'];
 
-    $output = '<ul class="' . esc_attr($block_attributes['className']) . '" style="font-size: var(--font-size-' . intval($block_attributes['fontSize']) . ')">';
+    $output = '<ul class="' . esc_attr($block_attributes['className']) . '>';
     foreach ($recent_posts as $post) {
         $post_categories = get_the_category($post['ID']);
 
