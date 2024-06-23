@@ -30,6 +30,34 @@ li {
     display: inline-block;
 }
 
+.wp-block-my-custom-block.two-column {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wp-block-my-custom-block.two-column li {
+    width: 50%;
+}
+
+.wp-block-my-custom-block.two-column li>a {
+    display: block;
+    padding: 10px 0;
+}
+
+.wp-block-my-custom-block.three-column {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wp-block-my-custom-block.three-column li {
+    width: 33.333%;
+}
+
+.wp-block-my-custom-block.three-column li>a {
+    display: block;
+    padding: 10px 0;
+}
+
 
 
 @media screen and (max-width: 767px) {

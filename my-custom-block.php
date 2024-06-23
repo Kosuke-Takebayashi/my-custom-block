@@ -8,6 +8,7 @@ Author: Your Name
 
 function my_custom_block_render_callback($block_attributes, $content)
 {
+    // 日付フォーマット
     $format = isset($block_attributes['selectedOption']) ? $block_attributes['selectedOption'] : '値が選択されていません';
 
     $recent_posts = wp_get_recent_posts(array(
@@ -34,7 +35,8 @@ function my_custom_block_render_callback($block_attributes, $content)
 
     $format = $block_attributes['selectedOption'];
 
-    $output = '<ul class="' . esc_attr($block_attributes['className']) . '">';
+    $output = '<ul class="' . esc_attr($block_attributes['className']) . ' ' . esc_attr($block_attributes['layoutStyle']) . '">';
+
     foreach ($recent_posts as $post) {
         $post_categories = get_the_category($post['ID']);
 
@@ -47,7 +49,7 @@ function my_custom_block_render_callback($block_attributes, $content)
 
         // カテゴリーの表示
         if ($post_categories) {
-            $categories_list = get_the_category_list(', ', '', $post['ID']);
+            $categories_list = get_the_category_list(', ', ' ', $post['ID']);
             $output .= '<span class="my-custom-block-category">' . $categories_list . '</span>';
         }
 
@@ -115,6 +117,10 @@ function my_custom_block_register_block()
                 'type' =>  "string",
                 'default' =>  "Y-m-d", // デフォルトの表示件数を設定
             ),
+            'layoutStyle' => array(
+                'type' =>  "string",
+                'default' =>  "one-column",
+            )
         ),
     ));
 }
