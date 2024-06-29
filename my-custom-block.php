@@ -42,6 +42,10 @@ function my_custom_block_render_callback($block_attributes, $content)
 
         $output .= '<li>';
 
+        if (!empty($block_attributes['thumbnail']) && $block_attributes['thumbnail']) {
+            $output .= '<div class="thumbnail-img-wrapper"><img src="' . esc_attr(get_the_post_thumbnail_url($post['ID'])) . '"></div>';
+        }
+
         // 投稿日の表示を制御
         if (!empty($block_attributes['date']) && $block_attributes['date']) {
             $output .= '<time class="my-custom-block-post-date" datetime="' . esc_attr(get_the_date($format, $post['ID'])) . '">' . esc_html(get_the_date($format, $post['ID'])) . '</time>';
@@ -120,7 +124,11 @@ function my_custom_block_register_block()
             'layoutStyle' => array(
                 'type' =>  "string",
                 'default' =>  "one-column",
-            )
+            ),
+            'thumbnail' => array(
+                'type' =>  "boolean",
+                'default' =>  "true",
+            ),
         ),
     ));
 }

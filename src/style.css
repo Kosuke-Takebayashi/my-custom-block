@@ -33,10 +33,11 @@ li {
 .wp-block-my-custom-block.two-column {
     display: flex;
     flex-wrap: wrap;
+    gap: 3%;
 }
 
 .wp-block-my-custom-block.two-column li {
-    width: 50%;
+    width: 48.5%;
 }
 
 .wp-block-my-custom-block.two-column li>a {
@@ -47,15 +48,20 @@ li {
 .wp-block-my-custom-block.three-column {
     display: flex;
     flex-wrap: wrap;
+    gap: 3%;
 }
 
 .wp-block-my-custom-block.three-column li {
-    width: 33.333%;
+    width: 31.3%;
 }
 
 .wp-block-my-custom-block.three-column li>a {
     display: block;
     padding: 10px 0;
+}
+
+.thumbnail-img-wrapper img {
+    max-width: 100%;
 }
 
 

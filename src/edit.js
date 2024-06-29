@@ -8,6 +8,7 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
     const [localPostsToShow, setLocalPostsToShow] = useState(attributes.postsToShow);
     const [localSelectedOption, setLocalSelectedOption] = useState(attributes.selectedOption);
     const [localLayoutStyle, setLocalLayoutStyle] = useState(attributes.layoutStyle);
+    const [localThumbnail, setLocalThumbnail] = useState(attributes.thumbnail);
 
     const blockProps = useBlockProps({ style: { fontSize: attributes.fontSize } });
 
@@ -23,6 +24,10 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
     useEffect(() => {
         setAttributes({ layoutStyle: localLayoutStyle });
     }, [localLayoutStyle]);
+
+    useEffect(() => {
+        setAttributes({ thumbnail: localThumbnail });
+    }, [localThumbnail]);
 
     const recentPosts = useSelect(
         (select) => {
@@ -89,6 +94,7 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
                 <PanelBody title={__("Font Size")}>
                     <RangeControl label={__("フォントサイズ")} value={attributes.fontSize} onChange={(fontSize) => setAttributes({ fontSize })} min={12} max={36} />
                     <ToggleControl label={__("投稿日")} checked={attributes.date} onChange={(date) => setAttributes({ date })} />
+                    <ToggleControl label={__("サムネイル")} checked={attributes.thumbnail} onChange={(thumbnail) => setAttributes({ thumbnail })} />
                     <RangeControl
                         label={__("表示投稿数")}
                         value={localPostsToShow}
@@ -105,6 +111,11 @@ function MyCustomBlockEdit({ attributes, setAttributes, clientId }) {
                 {recentPosts &&
                     recentPosts.map((post) => (
                         <li key={post.id}>
+                            {attributes.thumbnail && post._embedded["wp:featuredmedia"] && (
+                                <div className="thumbnail-img-wrapper">
+                                    <img className="" src={post._embedded["wp:featuredmedia"][0].source_url} alt={post.title.rendered} />
+                                </div>
+                            )}
                             {attributes.date && <span className="my-custom-block-post-date">{formatDate(new Date(post.date), localSelectedOption)}</span>}
                             <span className="my-custom-block-category">{post.categories}</span>
                             <a href={post.link}>{post.title.rendered}</a>

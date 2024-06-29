@@ -40,6 +40,10 @@ registerBlockType("my-custom/block", {
             type: "string",
             default: "one-column",
         },
+        thumbnail: {
+            type: "boolean",
+            default: true,
+        },
     },
     edit: MyCustomBlockEdit,
     save() {
